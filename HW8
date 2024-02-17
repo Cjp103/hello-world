@@ -1,0 +1,33 @@
+//set LEDpin
+const int LEDpin1 = 8;
+const int LEDpin2 = 9;
+const int LEDpin3 = 10;
+const int Button = 3;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LEDpin1, OUTPUT);
+  pinMode(LEDpin2, OUTPUT);
+  pinMode(LEDpin3, OUTPUT);
+  pinMode(Button, INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (digitalRead(Button) == HIGH)
+  {
+  digitalWrite(LEDpin1, HIGH);
+  delay(500);
+  digitalWrite(LEDpin1, LOW);
+  delay(500);
+  
+  digitalWrite(LEDpin2, HIGH);
+  delay(500);
+  digitalWrite(LEDpin2, LOW);
+  delay(500);
+  digitalWrite(LEDpin3, HIGH);
+  delay(500);
+  digitalWrite(LEDpin3, LOW);
+  delay(500);
+  }
+}
