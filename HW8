@@ -1,4 +1,5 @@
 // Evan Sokolson
+//Charlie Prather
 
 //set LEDpin
 const int LEDpin1 = 8;
