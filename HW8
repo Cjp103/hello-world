@@ -1,3 +1,5 @@
+// Evan Sokolson
+
 //set LEDpin
 const int LEDpin1 = 8;
 const int LEDpin2 = 9;
