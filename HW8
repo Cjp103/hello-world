@@ -1,5 +1,6 @@
 // Evan Sokolson
-//Charlie Prather
+// Charlie Prather
+// Max Ludwig
 
 //set LEDpin
 const int LEDpin1 = 8;
