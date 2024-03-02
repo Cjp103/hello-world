@@ -40,7 +40,7 @@ void loop() {
   gameDelay -= 1000;
 
   //give command
-  int comm = random(1,3);
+  int comm = random(1,4);
 
   for (int i=0;i<3000;i++){
     //beep;
@@ -49,7 +49,7 @@ void loop() {
   switch(comm) {
     case 1:
       //call beep;
-      //forehan
+      //forehand
       break;
     case 2:
       //call beep x 2
