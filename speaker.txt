@@ -1,40 +1,103 @@
 #include "pitches.h"
 
-// notes in the melody:
-int melody[] = {
+// ----------------------------------------------------------------------------------
+// Forehand
+int melody1[] = {
   NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+};  // notes in the melody
+
+int durations1[] = {
+  4, 8, 8, 4, 4, 4, 4, 4
+};  // note durations: 2 = half note, 4 = quarter note, 8 = eighth note, etc.
+
+// ----------------------------------------------------------------------------------
+// Backhand
+int melody2[] = {
+  NOTE_E4, NOTE_D4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_E4, NOTE_E4
 };
 
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4
+int durations2[] = {
+  4, 4, 4, 4, 4, 4, 2
 };
+
+// ----------------------------------------------------------------------------------
+// Serve
+int melody3[] = {
+  NOTE_C4, NOTE_D4, NOTE_E4, NOTE_E4, NOTE_D4, NOTE_C4, NOTE_B3
+};
+
+int durations3[] = {
+  2, 4, 4, 4, 4, 4, 4
+};
+
 
 void setup() {
-  // allow button press to be input
+  // Forehand
+  pinMode(5, INPUT);
+  // Backhand
+  pinMode(6, INPUT);
+  // Serve
   pinMode(7, INPUT);
 }
 
 void loop() {
-  // play notes on button press
-  if(digitalRead(7) == HIGH)
+  // ----------------------------------------------------------------------------------
+  // Forehand
+  if(digitalRead(5) == HIGH)
   {
     // iterate over the notes of the melody:
-    for (int thisNote = 0; thisNote < 8; thisNote++) {
+    for (int thisNote = 0; thisNote < sizeof(melody1); thisNote++) 
+    {
+      // to calculate the note duration, take one second divided by the note type.
+      //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+      int noteDuration = 1000 / durations1[thisNote];
 
-    // to calculate the note duration, take one second divided by the note type.
-    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / noteDurations[thisNote];
+      // tone(output_pin)
+      tone(8, melody1[thisNote], noteDuration);
 
-    // tone(output_pin)
-    tone(8, melody[thisNote], noteDuration);
+      // to distinguish the notes, set a minimum time between them.
+      // the note's duration + 30% seems to work well:
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+      // stop the tone playing at the output pin
+      noTone(8);
+    }
+  }
+  // ----------------------------------------------------------------------------------
+  // Backhand
+  if(digitalRead(6) == HIGH)
+  {
+    for (int thisNote = 0; thisNote < sizeof(melody2); thisNote++) 
+    {
+      int noteDuration = 1000 / durations2[thisNote];
 
-    // to distinguish the notes, set a minimum time between them.
-    // the note's duration + 30% seems to work well:
-    int pauseBetweenNotes = noteDuration * 1.30;
-    delay(pauseBetweenNotes);
-    // stop the tone playing:
-    noTone(8);
+      tone(8, melody2[thisNote], noteDuration);
+
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+   
+      noTone(8);
+    }
+  }
+
+  // ----------------------------------------------------------------------------------
+  // Serve
+
+  // only Pin 7 plays and stops properly
+  // the other two above play and then keep buzzing indefinitely
+
+  if(digitalRead(7) == HIGH)
+  {
+    for (int thisNote = 0; thisNote < sizeof(melody3); thisNote++) 
+    {
+      int noteDuration = 1000 / durations3[thisNote];
+
+      tone(8, melody3[thisNote], noteDuration);
+
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+   
+      noTone(8);
     }
   }
 }
