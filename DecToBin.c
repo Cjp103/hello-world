@@ -1,13 +1,17 @@
 #include <stdio.h>
 
-void decToBinary(int score){
-	
+
+int main()
+{
+	int TOTAL [6];
+	int score = 28;
 	int one = score % 10;
 	int ten = score / 10;
 	int ones[4];
 	int tens[4];
 	
-	if(score==0){printf("0"); return;}
+	if(score==0){printf("0");}
+	else{
 	
 	int i = 0;
 	int q = 0;
@@ -22,22 +26,19 @@ void decToBinary(int score){
 		ten /= 2;
 	}
 	
-		printf("ones = ");
 	
-	for (int j = 3; j >= 0; j--)
-		printf("%d", ones[j]);
+		TOTAL[5] = ones[0];
+		TOTAL[4] = ones[1];
+		TOTAL[3] = ones[2];
+		TOTAL[2] = ones[3];
+		TOTAL[1] = tens[0];
+		TOTAL[0] = tens[1];
 		
-		printf("\ntens = ");
+	for (int j = 0; j <= 5; j++)
+		printf("%d",TOTAL[j]);
 		
-	for (int p = q - 1; p >= 0; p--)
-		printf("%d", tens[p]);
-}
-
-
-int main()
-{
-	int score = 25;
-	decToBinary(score);
+	}
+		
 	return 0;
 }
 
