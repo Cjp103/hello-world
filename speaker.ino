@@ -39,17 +39,17 @@ int size3 = sizeof(melody3) / sizeof(melody3[0]);
 // ----------------------------------------------------------------------------------
 
 void setup() {
-  randomSeed(analogRead(0));
+  randomSeed(analogRead(0));  // no connect to this pin
 }
 
 // ----------------------------------------------------------------------------------
 
 void loop() {
 
-    int randomNumber = random(1,4);
+    int randomNumber = random(1,4);  // rand from 1 to 3
 
     switch(randomNumber){
-      case 1:
+      case 1:  // forehand
 
         for (int thisNote = 0; thisNote < size1; thisNote++) 
         {
@@ -70,7 +70,7 @@ void loop() {
 
         break;      
 
-      case 2:
+      case 2:   // backhand
 
         for (int thisNote = 0; thisNote < size2; thisNote++) 
         {
@@ -86,7 +86,7 @@ void loop() {
 
         break;
 
-      case 3:
+      case 3:  // serve
 
         for (int thisNote = 0; thisNote < size3; thisNote++) 
         {
