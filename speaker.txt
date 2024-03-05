@@ -41,7 +41,7 @@ void setup() {
 }
 
 void loop() {
-  int comm = random(1,4);   // rand from 1 to 3
+  long comm = random(1,4);   // rand from 1 to 3
   // ----------------------------------------------------------------------------------
   // Forehand
   if(comm == 1)
