@@ -111,7 +111,7 @@ int themeSize = sizeof(theme) / sizeof(theme[0]);
 
 // Game End (Minor Wii Theme)
 int minorTheme[] = {
-  0, 0, NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_DS4, NOTE_D4, NOTE_C4, NOTE_G4
+  0, 0, NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_DS4, NOTE_D4, NOTE_C4, NOTE_B3
 };  // notes in the melody
 
 int minorThemeDurations[] = {
@@ -168,7 +168,7 @@ int z = 0;
 //game
 int bScore[6];
 int score = 0;
-int gameDelay = 51000;
+int gameDelay = 5100000;
 
 //hex pins
 int A = 4;
@@ -214,7 +214,7 @@ void setup() {
 void loop() {
 
   //update delay
-  gameDelay -= 1000;
+  gameDelay -= 100000;
 
   //score display
   hexDisplay(score);
@@ -241,6 +241,7 @@ void loop() {
     }
   }
   
+  delay(3000);
 
   switch(comm) {
     case 1:
@@ -310,7 +311,6 @@ void loop() {
       break;
   }
 
-  int temp = gameDelay;
   int input = readData();
 
   if (input == comm){
@@ -364,7 +364,6 @@ int readData () {
     bool serve = false;
     bool forehand = false;
     bool backhand = false;
-
 
 //serve reading
     if(y < -16){ 
