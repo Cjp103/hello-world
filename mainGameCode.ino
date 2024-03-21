@@ -83,6 +83,7 @@ int y = 0;
 int z = 0;
 
 //game
+int bScore[6];
 int score = 0;
 int gameDelay = 51000;
 
@@ -92,6 +93,21 @@ int gameDelay = 51000;
 
 void setup() {
 
+  pinMode(7, OUTPUT);   // green
+  pinMode(8, OUTPUT);   // red
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+
+  // testing hex displays
+  int D = 5; int C = 2; int B = 3; int A = 4;
+  int E = 9; int F = 10;
+  pinMode(F, OUTPUT);
+  pinMode(E, OUTPUT);
+  pinMode(D, OUTPUT);
+  pinMode(C, OUTPUT);
+  pinMode(B, OUTPUT);
+  pinMode(A, OUTPUT);
+    
   Serial.begin(115200);
 
   while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
@@ -106,14 +122,13 @@ void setup() {
 
 void loop() {
 
-    //update delay
-    gameDelay -= 1000;
-    //give command
-    int comm = random(1,4);
+  //update delay
+  gameDelay -= 1000;
 
-    //   for (int i=0;i<3000;i++){
-    //     //beep;
-    //   }
+  //score display
+  hexDisplay(score);
+  //give command    
+  int comm = random(1,4);
 
   //play them if score is 0
   if(score == 0){
@@ -235,8 +250,8 @@ void loop() {
           delay(pauseBetweenNotes);
           // stop the tone playing at the output pin
           noTone(8);
-     
         }
+        delay(10000)
         exit(-1); 
     }
 
@@ -300,3 +315,39 @@ int readData () {
   return input;
 
 }
+
+void hexDisplay(int score){
+    int TOTAL [6];
+	int one = score % 10;
+	int ten = score / 10;
+	int ones[4];
+	int tens[4];
+	
+	for (int i=0;i<4;i++){
+		ones[i] = one % 2;
+		one /= 2;
+	}
+	
+	for (int q=0;q<4;q++){
+		tens[q] = ten % 2;
+		ten /= 2;
+	}
+	
+	TOTAL[5] = ones[0];
+	TOTAL[4] = ones[1];
+	TOTAL[3] = ones[2];
+	TOTAL[2] = ones[3];
+	TOTAL[1] = tens[0];
+	TOTAL[0] = tens[1];
+
+   // hex decoder inputs are active HIGH
+   digitalWrite(A, TOTAL[5]);  // 1's 
+   digitalWrite(B, TOTAL[4]);  // 2's
+   digitalWrite(C, TOTAL[3]);   // 4's
+   digitalWrite(D, TOTAL[2]);   // 8's
+   digitalWrite(E, TOTAL[1]);  // 1's (tens)
+   digitalWrite(F, TOTAL[0]);   // 2's   (tens)
+		    
+}
+
+
