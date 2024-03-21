@@ -39,7 +39,7 @@ int size3 = sizeof(melody3) / sizeof(melody3[0]);
 // ----------------------------------------------------------------------------------
 
 void setup() {
-  randomSeed(analogRead(0));  // no connect to this pin
+  randomSeed(analogRead(0));  // no connection to this pin
 }
 
 // ----------------------------------------------------------------------------------
