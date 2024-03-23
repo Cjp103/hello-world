@@ -1,4 +1,3 @@
-// Kappa Bop-it Project
 
 //define pitches
 #define NOTE_B0 31
@@ -111,7 +110,7 @@ int themeSize = sizeof(theme) / sizeof(theme[0]);
 
 // Game End (Minor Wii Theme)
 int minorTheme[] = {
-  0, 0, NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_DS4, NOTE_D4, NOTE_C4, NOTE_B3
+  0, 0, NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_DS4, NOTE_D4, NOTE_C4, NOTE_G3
 };  // notes in the melody
 
 int minorThemeDurations[] = {
@@ -168,7 +167,7 @@ int z = 0;
 //game
 int bScore[6];
 int score = 0;
-int gameDelay = 5100000;
+int gameDelay = 51000;
 
 //hex pins
 int A = 4;
@@ -214,7 +213,7 @@ void setup() {
 void loop() {
 
   //update delay
-  gameDelay -= 100000;
+  gameDelay -= 1000;
 
   //score display
   hexDisplay(score);
@@ -317,11 +316,16 @@ void loop() {
     score++;
     //success sound
     tone(8, NOTE_C4);
-    tone(8, NOTE_E4);
+    delay(250);
+    noTone(8);
+    tone(8, NOTE_F4);
+    delay(250);
+    noTone(8);
     tone(8, NOTE_G4);
+    delay(250);
+    noTone(8);
     tone(8, NOTE_C5);
-    delay(2000);
-
+    delay(1000);
     noTone(8);
   }
   else{
@@ -356,6 +360,8 @@ int readData () {
   int input = 0;
 
   do{
+
+    delay(10);
     Vector normAccel = mpu.readNormalizeAccel();
     x = normAccel.XAxis;
     y = normAccel.YAxis;
@@ -366,36 +372,37 @@ int readData () {
     bool backhand = false;
 
 //serve reading
-    if(y < -16){ 
+    if(z > 16){ 
+      delay(1000);
       return 3; 
     }
 
-//forehand reading
+//backhand reading
 
 //MUST CALIUBRATE FOR LOOP TO BE .5 SEC
     if(x > 16){ 
       int i = 10;
       do{
         delay(50);
-        if(y < -16) {serve = true;}
+        if(z > 16) {serve = false;}
         i--;
       }while(i>0);
         
       if (serve) {return 3;}
-      else {return 1;}
+      else {return 2;}
     }
 
-//backhand reading
+//forehand reading
     if(x < -16){ 
       int i = 10;
       do{
         delay(50);
-        if(y < -16) {serve = true;}
+        if(z > 16) {serve = true;}
         i--;
       }while(i>0);
 
       if (serve) {return 3;}
-      else {return 2;}
+      else {return 1;}
 
     }
     temp -= 100;
@@ -407,7 +414,7 @@ int readData () {
 }
 
 void hexDisplay(int score){
-    int TOTAL [6];
+  int TOTAL [6];
 	int one = score % 10;
 	int ten = score / 10;
 	int ones[4];
