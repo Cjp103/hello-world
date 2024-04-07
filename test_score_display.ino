@@ -1,3 +1,6 @@
+
+// TESTING 7-SEGMENT DISPLAYS
+
 #include <Wire.h>
 #include <MPU6050.h>
 
