@@ -1,5 +1,5 @@
 
-// TROUBLESHOOTING ACCELEROMETER
+// TESTING GAME LOGIC
 
 
 #include <Wire.h>
