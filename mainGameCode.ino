@@ -1,5 +1,4 @@
-
-//define pitches
+//define pitches (note, frequency)
 #define NOTE_B0 31
 #define NOTE_C1 33
 #define NOTE_CS1 35
@@ -183,14 +182,10 @@ int F = 10;
 
 void setup() {
 
-  pinMode(7, OUTPUT);   // green
   pinMode(8, OUTPUT);   // red
-  // put your setup code here, to run once:
   Serial.begin(115200);
 
-  // testing hex displays
-  int D = 5; int C = 2; int B = 3; int A = 4;
-  int E = 9; int F = 10;
+  // activating hex displays
   pinMode(F, OUTPUT);
   pinMode(E, OUTPUT);
   pinMode(D, OUTPUT);
@@ -205,9 +200,7 @@ void setup() {
     Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
     delay(500);
   }
-
   randomSeed(analogRead(0));  // no connection to this pin
-
 }
 
 void loop() {
@@ -262,7 +255,6 @@ void loop() {
           // stop the tone playing at the output pin
           noTone(8);
         }
-
       break;
 
     case 2:
@@ -284,7 +276,6 @@ void loop() {
           // stop the tone playing at the output pin
           noTone(8);
         }  
-
       break;
 
     case 3:
@@ -306,7 +297,6 @@ void loop() {
           // stop the tone playing at the output pin
           noTone(8);
         }  
-
       break;
   }
 
@@ -349,10 +339,7 @@ void loop() {
         delay(10000);
         exit(-1); 
     }
-
 }
-
-
 
 int readData () {
 
@@ -360,7 +347,6 @@ int readData () {
   int input = 0;
 
   do{
-
     delay(10);
     Vector normAccel = mpu.readNormalizeAccel();
     x = normAccel.XAxis;
@@ -378,8 +364,6 @@ int readData () {
     }
 
 //backhand reading
-
-//MUST CALIUBRATE FOR LOOP TO BE .5 SEC
     if(x > 16){ 
       int i = 10;
       do{
@@ -403,14 +387,11 @@ int readData () {
 
       if (serve) {return 3;}
       else {return 1;}
-
     }
     temp -= 100;
 
   } while (temp != 0);
-
   return input;
-
 }
 
 void hexDisplay(int score){
@@ -440,9 +421,8 @@ void hexDisplay(int score){
    // hex decoder inputs are active HIGH
    digitalWrite(A, TOTAL[5]);  // 1's 
    digitalWrite(B, TOTAL[4]);  // 2's
-   digitalWrite(C, TOTAL[3]);   // 4's
-   digitalWrite(D, TOTAL[2]);   // 8's
+   digitalWrite(C, TOTAL[3]);  // 4's
+   digitalWrite(D, TOTAL[2]);  // 8's
    digitalWrite(E, TOTAL[1]);  // 1's (tens)
-   digitalWrite(F, TOTAL[0]);   // 2's   (tens)
-		    
+   digitalWrite(F, TOTAL[0]);  // 2's   (tens)		    
 }
