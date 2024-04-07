@@ -44,8 +44,7 @@ while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-Vector normAccel = mpu.readNormalizeAccel();
+    Vector normAccel = mpu.readNormalizeAccel();
     x = normAccel.XAxis;
     y = normAccel.YAxis;
     z = normAccel.ZAxis;
