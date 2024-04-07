@@ -1,10 +1,6 @@
-/*
-    MPU6050 Triple Axis Gyroscope & Accelerometer. Simple Gyroscope Example.
-    Read more: http://www.jarzebski.pl/arduino/czujniki-i-sensory/3-osiowy-zyroskop-i-akcelerometr-mpu6050.html
-    GIT: https://github.com/jarzebski/Arduino-MPU6050
-    Web: http://www.jarzebski.pl
-    (c) 2014 by Korneliusz Jarzebski
-*/
+
+// TROUBLESHOOTING ACCELEROMETER
+
 
 #include <Wire.h>
 #include <MPU6050.h>
@@ -98,7 +94,7 @@ int readData () {
 
 //forehand reading
 
-//MUST CALIUBRATE FOR LOOP TO BE .5 SEC
+//MUST CALIBRATE FOR LOOP TO BE .5 SEC
     if(x > 16){ 
       int i = 10;
       do{
@@ -131,58 +127,3 @@ int readData () {
   return input;
 
 }
-
-/*
-    MPU6050 Triple Axis Gyroscope & Accelerometer. Simple Accelerometer Example.
-    Read more: http://www.jarzebski.pl/arduino/czujniki-i-sensory/3-osiowy-zyroskop-i-akcelerometr-mpu6050.html
-    GIT: https://github.com/jarzebski/Arduino-MPU6050
-    Web: http://www.jarzebski.pl
-    (c) 2014 by Korneliusz Jarzebski
-*/
-
-
-// void setup() 
-// {
-//   Serial.begin(115200);
-
-//   Serial.println("Initialize MPU6050");
-
-//   while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
-//   {
-//     Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
-//     delay(500);
-//   }
-
-//   // If you want, you can set accelerometer offsets
-//   // mpu.setAccelOffsetX();
-//   // mpu.setAccelOffsetY();
-//   // mpu.setAccelOffsetZ();
-  
-//   checkSettings();
-// }
-
-
-// void loop()
-// {
-
-
-//   Serial.print(" Xraw = ");
-//   Serial.print(rawAccel.XAxis);
-//   Serial.print(" Yraw = ");
-//   Serial.print(rawAccel.YAxis);
-//   Serial.print(" Zraw = ");
-
-//   Serial.println(rawAccel.ZAxis);
-//   Serial.print(" Xnorm = ");
-//   Serial.print(normAccel.XAxis);
-//   Serial.print(" Ynorm = ");
-//   Serial.print(normAccel.YAxis);
-//   Serial.print(" Znorm = ");
-//   Serial.println(normAccel.ZAxis);
-  
-//   delay(10);
-// }
-
-
-
-
