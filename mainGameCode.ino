@@ -182,8 +182,7 @@ int F = 10;
 
 void setup() {
 
-  pinMode(8, OUTPUT);   // red
-  Serial.begin(115200);
+  pinMode(8, OUTPUT);   // speaker
 
   // activating hex displays
   pinMode(F, OUTPUT);
