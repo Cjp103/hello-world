@@ -1,3 +1,6 @@
+
+// GETTING ACCEL VALUES TO SERIAL OUTPUT
+
 #include <Wire.h>
 #include <MPU6050.h>
 
